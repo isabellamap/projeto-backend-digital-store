@@ -30,37 +30,63 @@ O projeto tem como objetivo gerenciar os dados de uma loja virtual, incluindo us
 
 ### 1. Pré-requisitos
 
+Antes de iniciar, é necessário ter instalado:
+
 - Node.js
-- MySQL
 - npm
+- MySQL
 
-### 2. Instalar as dependências
+### 2. Clonar o repositório
 
-Execute no terminal:
+```bash
+git clone https://github.com/isabellamap/projeto-backend-digital-store.git
+```
 
-    npm install
+Entre na pasta do projeto:
 
-### 3. Configurar o banco de dados
+```bash
+cd projeto-backend-digital-store
+```
+
+### 3. Instalar as dependências
+
+```bash
+npm install
+```
+
+### 4. Configurar o banco de dados
 
 Crie um banco de dados MySQL e configure suas informações no arquivo `.env`.
 
-Use o arquivo `.env.example` como modelo para preencher as configurações.
+Utilize o arquivo `.env.example` como modelo para criar seu próprio `.env`.
 
-### 4. Executar as migrations
+Preencha as informações de conexão com o banco de dados e defina uma chave secreta para o JWT.
 
-Execute no terminal:
+### 5. Executar as migrations
 
-    npx sequelize-cli db:migrate
+Para criar as tabelas do banco de dados, execute:
 
-### 5. Iniciar o servidor
+```bash
+npx sequelize-cli db:migrate
+```
 
-Para iniciar em modo de desenvolvimento, execute:
+### 6. Iniciar o servidor
 
-    npm run dev
+Para iniciar em modo de desenvolvimento:
+
+```bash
+npm run dev
+```
+
+Ou para iniciar normalmente:
+
+```bash
+npm start
+```
 
 O servidor será iniciado na porta 3000.
 
-## Principais rotas
+## Principais rotas da API
 
 ### Usuários
 
@@ -75,10 +101,14 @@ O servidor será iniciado na porta 3000.
 |---|---|---|
 | POST | `/v1/product` | Criar produto |
 | GET | `/v1/product` | Listar produtos |
-| GET | `/v1/product/search?name=` | Pesquisar produtos |
+| GET | `/v1/product/search?name=` | Pesquisar produtos pelo nome |
 | GET | `/v1/product/:id` | Consultar produto |
 | PUT | `/v1/product/:id` | Atualizar produto |
 | DELETE | `/v1/product/:id` | Excluir produto |
+| POST | `/v1/product/:id/images` | Adicionar imagem |
+| DELETE | `/v1/product/:id/images/:imageId` | Excluir imagem |
+| POST | `/v1/product/:id/options` | Adicionar opção |
+| DELETE | `/v1/product/:id/options/:optionId` | Excluir opção |
 
 ### Categorias
 
@@ -94,9 +124,11 @@ O servidor será iniciado na porta 3000.
 
 As rotas de criação, atualização e exclusão de produtos e categorias exigem autenticação.
 
-Para acessá-las, envie o token JWT no cabeçalho da requisição:
+Para acessar essas rotas, é necessário enviar o token JWT no cabeçalho da requisição:
 
-`Authorization: Bearer SEU_TOKEN`
+```text
+Authorization: Bearer SEU_TOKEN
+```
 
 O token é obtido após realizar o login.
 
@@ -108,4 +140,4 @@ As migrations são utilizadas para criar a estrutura do banco de dados.
 
 ## Autora
 
-Isabella Mapurunga Sobral
+**Isabella Mapurunga Sobral**
